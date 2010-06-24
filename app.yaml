@@ -1,0 +1,26 @@
+application: ipsumimage
+version: 2-0
+runtime: python
+api_version: 1
+
+handlers:
+- url: /
+  static_files: static/index.html
+  upload: static/index.html
+- url: /style.css
+  static_files: static/style.css
+  upload: static/style.css
+- url: /test
+  static_files: static/test.html
+  upload: static/test.html
+- url: /robots.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+- url: /google96f127342fdae2a8.html
+  static_files: static/google96f127342fdae2a8.html
+  upload: static/google96f127342fdae2a8.html
+- url: .*
+  script: main.py

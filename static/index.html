@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Ipsum Image - Placeholder Image Generator Hosted on Google App Engine</title>
+	<meta name="description" content="Dynamically generates placeholder images of any size up to 4000x4000, useful for doing initial implementations of web designs before actual images are available. Inspired by DummyImage.com." />
+	
+	<link rel="icon" type="image/png" href="/16?s=8&amp;l=16%C2%B2" />
+	<link rel="apple-touch-icon" href="/57.png" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+
+<h1>Ipsum Image</h1>
+
+<p>Kinda like Lorem Ipsum text, but for images.  Dynamically generates placeholder images of any size up to 4000x4000, useful for doing initial layouts of web designs before actual images are available.  Inspired by DummyImage.com.</p>
+
+<p>Like it?  Vote for it on <a href="http://appgallery.appspot.com/about_app?app_id=agphcHBnYWxsZXJ5chQLEgxBcHBsaWNhdGlvbnMYxZclDA">Ipsum Image's App Gallery listing</a>.</p>
+
+
+<hr />
+
+<p><a href="#what">What</a> | <a href="#why">Why</a> | <a href="#who">Who</a> | <a href="#where">Where</a> | <a href="#how">How</a></p>
+
+
+<h2 id="what">What</h2>
+
+<p>Ipsum Image gives you an image corresponding to the size in the URL.  If only one dimension is specified, the image will be square.  You can specify the background color by placing the full hex value after a comma at the end, or set fg/bg colors and lots of other things via the <a href="#url-parameters">URL parameters</a>.  Examples:</p>
+
+<dl>
+    <dt>http://ipsumimage.appspot.com/120x100</dt>
+    <dd><img src="/120x100" alt="120x100 Placeholder" /></dd>
+
+    <dt>http://ipsumimage.appspot.com/80.jpeg</dt>
+    <dd><img src="/80.jpeg" alt="80x80 Placeholder" /></dd>
+        
+    <dt>http://ipsumimage.appspot.com/200.png,333333</dt>
+    <dd><img src="/200.png,333333" alt="200x200 Placeholder" /></dd>
+        
+    <dt>http://ipsumimage.appspot.com/80.jpg?b=001E2D&amp;f=f</dt>
+    <dd><img src="/80.jpg?b=001E2D&amp;f=f" alt="80x80 Placeholder" /></dd>
+        
+    <dt>http://ipsumimage.appspot.com/cga</dt>
+    <dd><img src="/cga" alt="CGA Placeholder" /></dd>
+        
+    <dt>http://ipsumimage.appspot.com/120x100?l=IpsumImage|Hosted on GAE&amp;s=15</dt>
+    <dd><img src="/120x100?l=IpsumImage|Hosted+on+GAE&amp;s=15" alt="Ipsum Image Hosted on GAE" /></dd>
+        
+    <dt>http://www.ipsumimage.com/600x80</dt>
+    <dd><img src="http://www.ipsumimage.com/600x80" alt="600x80 Placeholder" /></dd>
+</dl>
+
+
+<h4>vs. DummyImage</h4>
+
+<p>Ipsum Image has all the features of DummyImage.com, including <a href="http://dummyimage.com/#standards">standard image sizes</a>, with these exceptions/differences:</p>
+
+<ol>
+    <li>Doesn't support GIF, because Google App Engine doesn't support GIF.  Also, GIF is dumb - there, I said it.</li>
+    <li>Uses a different <a href="#url-parameters">URL scheme</a>.</li>
+    <li>I haven't done anything to <a href="http://dummyimage.com/#flash">support Flash as DummyImage does</a>, because I have no way to test.</li>
+</ol>
+
+
+<h4 id="url-parameters">URL parameters</h4>
+
+<p>When specified, the URL parameters take precedence over the path.  In other words, the image returned for "100.png?t=jpg" will be a JPEG.</p>
+
+<dl>
+    <dt>l</dt>
+    <dd>Label text.</dd>
+    
+    <dt>s</dt>
+    <dd>Size of font.</dd>
+    
+    <dt>f</dt>
+    <dd>Foreground/font color.</dd>
+    
+    <dt>b</dt>
+    <dd>Background color.</dd>
+    
+    
+    <dt>t</dt>
+    <dd>Type of image. Can be one of {png,jpg,jpeg}.</dd>
+    
+    <dt>d</dt>
+    <dd>Dimension override.  Same format as the base filename (WxH or a standard size name).</dd>
+</dl>
+
+<!--
+<h5>Test out the URL parameters</h5>
+
+<form action="/ipsumimage" target="_blank" method="get" id="test-form">
+    <p><label for="test-d">Dimensions</label> <input type="text" id="test-d" name="d" /></p>
+    <p><label for="test-l">Label Text</label> <input type="text" id="test-l" name="l" /></p>
+    <p><label for="test-s">Size of Font</label> <input type="text" id="test-s" name="s" size="4" maxlength="4" /></p>
+    <p><label for="test-f">Foreground/Font Color</label> <input type="text" id="test-f" name="f" size="6" maxlength="6" /></p>
+    <p><label for="test-b">Background Color</label> <input type="text" id="test-b" name="b" size="6" maxlength="6" /></p>
+
+    <p>
+        <label for="test-t">Type</label>
+            <select name="test-t">
+                <option>png</option>
+                <option>jpeg</option>
+            </select>
+    </p>
+    
+    <button type="submit">Ipsum Me</button>
+</form>
+-->
+
+<h2 id="why">Why</h2>
+
+<ul>
+    <li>Dynamically creating placeholder images for layouts.</li>
+    <li>Learning Python and playing with GAE.</li>
+    <li>Taking over the world.</li>
+</ul>
+
+
+<h2 id="who">Who</h2>
+
+<p>Ipsum Image was written and is maintained by <a href="http://moore.cx/dan">Dan Moore</a>.</p>
+    
+<p>Just like most of the <a href="http://dummyimage.com/#other-downloads">copycats</a>, I got the idea for this from <a href="http://www.russellheimlich.com/blog">Russell Heimlich</a>'s <a href="http://dummyimage.com/">DummyImage.com</a>.  It is his idea, I just thought I could do it in a way to make Google pay for the hosting.</p>
+
+
+<h2 id="where">Where</h2>
+
+<p>You probably don't care about this section.</p>
+
+<p>Ipsum Image is hosted entirely by Google using <a href="http://code.google.com/appengine/">Google App Engine</a> along with some functionality provided by the <a href="http://code.google.com/apis/chart/image_charts.html">Google Chart API</a>.</p>
+
+<p>The <a href="http://github.com/mgrdcm/ipsumimage">source code for Ipsum Image</a> is available on <a href="http://github.com/mgrdcm">my GitHub account</a> and is licensed under Apache 2.0.</p>
+
+
+<h2 id="how">How</h2>
+
+<p>You almost certainly don't care about this section.</p>
+
+<p><a href="http://code.google.com/appengine/">Google App Engine</a> seemed like a logical choice to host a simple application like this, but I was stunned to find that there's no way to render text into an image using it (at least not without jumping through a lot of hoops).  However, another Google service came to the rescue:  <a href="http://code.google.com/apis/chart/image_charts.html">Google Chart API</a>.  Luckily, it allows you to specify a chart that contains only the <a href="http://code.google.com/apis/chart/docs/chart_params.html#gcharts_chart_title">chart title</a>, and so Ipsum Image uses that to create the label text which it then composites onto the full placeholder image background using the <a href="http://code.google.com/appengine/docs/python/images/">GAE Images service</a>.  Full images are cached via <a href="http://code.google.com/appengine/docs/python/memcache/">GAE's memcached support</a>.</p>
+
+<p>NOTE:  The first version of Ipsum Image actually just redirected to the Google Chart API's rendered output directly.  It worked fairly well because you can specify a size for the chart (up to 300000 pixels) and a background color, but centering the text well was impossible to do.</p>
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-12878728-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>
