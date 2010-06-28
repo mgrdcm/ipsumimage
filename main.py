@@ -113,7 +113,7 @@ class MainHandler(webapp.RequestHandler):
         
         bgmatch = re.match(r"^[0-9a-fA-F]{6}$", bgcolor)
         if not bgmatch:
-            'aaaaaa'
+            bgcolor = 'aaaaaa'
         
         
         if len(fgcolor) == 1:
@@ -125,7 +125,7 @@ class MainHandler(webapp.RequestHandler):
 
         fgmatch = re.match(r"^[0-9a-fA-F]{6}$", fgcolor)
         if not fgmatch:
-            '000000'
+            fgcolor = '000000'
         
         
         ## determine size
