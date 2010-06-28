@@ -111,12 +111,21 @@ class MainHandler(webapp.RequestHandler):
         elif len(bgcolor) == 3:
             bgcolor = bgcolor[0] + bgcolor[0] + bgcolor[1] + bgcolor[1] + bgcolor[2] + bgcolor[2]
         
+        bgmatch = re.match(r"^[0-9a-fA-F]{6}$", bgcolor)
+        if not bgmatch:
+            'aaaaaa'
+        
+        
         if len(fgcolor) == 1:
             fgcolor = fgcolor[0] + fgcolor[0] + fgcolor[0] + fgcolor[0] + fgcolor[0] + fgcolor[0]
         elif len(fgcolor) == 2:
             fgcolor = fgcolor[0] + fgcolor[1] + fgcolor[0] + fgcolor[1] + fgcolor[0] + fgcolor[1]
         elif len(fgcolor) == 3:
             fgcolor = fgcolor[0] + fgcolor[0] + fgcolor[1] + fgcolor[1] + fgcolor[2] + fgcolor[2]
+
+        fgmatch = re.match(r"^[0-9a-fA-F]{6}$", fgcolor)
+        if not fgmatch:
+            '000000'
         
         
         ## determine size
@@ -175,8 +184,7 @@ class MainHandler(webapp.RequestHandler):
                 self.response.set_status(400)
                 self.response.out.write("Error from Google Chart: '" + label_img.content + "'.")
 
-        
-        
+
         ## image requested is too damn big
         else:
             self.response.set_status(400)
