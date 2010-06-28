@@ -110,6 +110,11 @@ class MainHandler(webapp.RequestHandler):
             bgcolor = bgcolor[0] + bgcolor[1] + bgcolor[0] + bgcolor[1] + bgcolor[0] + bgcolor[1]
         elif len(bgcolor) == 3:
             bgcolor = bgcolor[0] + bgcolor[0] + bgcolor[1] + bgcolor[1] + bgcolor[2] + bgcolor[2]
+            
+        bgmatch = re.match(r"^[0-9a-fA-F]{6}$", bgcolor)
+        if not bgmatch:
+            bgcolor = 'aaaaaa'
+            
         
         if len(fgcolor) == 1:
             fgcolor = fgcolor[0] + fgcolor[0] + fgcolor[0] + fgcolor[0] + fgcolor[0] + fgcolor[0]
@@ -118,6 +123,9 @@ class MainHandler(webapp.RequestHandler):
         elif len(fgcolor) == 3:
             fgcolor = fgcolor[0] + fgcolor[0] + fgcolor[1] + fgcolor[1] + fgcolor[2] + fgcolor[2]
         
+        fgmatch = re.match(r"^[0-9a-fA-F]{6}$", fgcolor)
+        if not fgmatch:
+            fgcolor = 'aaaaaa'
         
         ## determine size
         width = int(size.group('width'))
