@@ -157,7 +157,10 @@ class MainHandler(webapp.RequestHandler):
         title_font_size = min(title_font_size, height*0.6)
         
         # allow font size to be overridden
-        title_font_size = int(self.request.get('s', title_font_size))
+        try:
+            title_font_size = int(self.request.get('s'))
+        except ValueError:
+            pass
         
         if width <= 4000 and height <= 4000:
             # the label images must be 1000 pixels or less in each dimension
