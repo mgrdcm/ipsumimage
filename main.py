@@ -35,6 +35,8 @@ from google.appengine.api.urlfetch import fetch
 class MainHandler(webapp.RequestHandler):
   
   def get(self):
+    
+    # special pre-defined sizes to use in lieu of number dimensions.  taken from dummyimage.com.
     sizes = {
         # Ad Sizes
         'mediumrectangle':      '300×250',
@@ -150,7 +152,7 @@ class MainHandler(webapp.RequestHandler):
         
         
         ## determine size of the font used for title needs to vary depending on width
-        title_font_size = (float(width)/len(label)) * (1.4 if width > 16 else 1.9)
+        title_font_size = (float(width)/max(len(label),1)) * (1.4 if width > 16 else 1.9)
         title_font_size = min(title_font_size, 100)
         
         # make sure it is reasonably sized based on height too
@@ -174,7 +176,7 @@ class MainHandler(webapp.RequestHandler):
                 full_img = memcache.get(cache_key)
                 
                 if full_img is None:
-                    label_img = fetch(url)
+                    label_img = fetch(url=url, deadline=10)
                     # TODO: check the response code of the above fetch!
                     
                     full_img = images.composite([(label_img.content, 0, 0, 1.0, images.CENTER_CENTER)], width, height, int('ff'+bgcolor,16), encoding)
