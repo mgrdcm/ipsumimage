@@ -32,6 +32,13 @@ from google.appengine.ext.webapp import template
 from google.appengine.api.urlfetch import fetch
 
 
+# load up our 1x1 PNG file for compositing when no label is defined or can be loaded
+empty_png_file = open('1x1.png', 'rb')
+empty_png = empty_png_file.read()
+empty_png_file.close()
+
+empty_png_def = (empty_png, 0, 0, 0.0, images.CENTER_CENTER)
+
 class MainHandler(webapp.RequestHandler):
   
   def get(self):
@@ -171,24 +178,38 @@ class MainHandler(webapp.RequestHandler):
             url = 'http://chart.apis.google.com/chart?chs=' + str(label_width) + 'x' + str(label_height) + '&cht=p3&chtt=' + urllib.quote_plus(label.encode('utf-8')) + '&chts=' + fgcolor + ',' + str(title_font_size) + '&chf=bg,s,' + bgcolor
             
             
-            try:
-                cache_key = os.environ['CURRENT_VERSION_ID'] + "|" + url + "|" + str(width) + "|" + str(height) + "|" + str(bgcolor) + "|" + str(encoding)
-                full_img = memcache.get(cache_key)
-                
-                if full_img is None:
+            # see if we've already generated this image and have it cached in memcache
+            cache_key = os.environ['CURRENT_VERSION_ID'] + "|" + url + "|" + str(width) + "|" + str(height) + "|" + str(bgcolor) + "|" + str(encoding)
+            full_img = memcache.get(cache_key)
+            
+            if full_img is None:
+                # not found in memcache, so try creating it
+
+                try:
                     label_img = fetch(url=url, deadline=10)
-                    # TODO: check the response code of the above fetch!
-                    
+                
                     full_img = images.composite([(label_img.content, 0, 0, 1.0, images.CENTER_CENTER)], width, height, int('ff'+bgcolor,16), encoding)
                     memcache.add(cache_key, full_img)
-                
-                self.response.headers['Content-Type'] = mimetype
-                self.response.out.write(full_img)
-            except images.BadImageError:
-                self.response.set_status(400)
-                self.response.out.write("Error from Google Chart: '" + label_img.content + "'.")
+                    
+                except images.BadImageError:
+                    # self.response.set_status(400)
+                    # self.response.out.write("Error from Google Chart: '" + label_img.content + "'.")
+                    logging.error("Error from Google Chart: '" + label_img.content + "'.")
+                    full_img = images.composite([empty_png_def], width, height, int('ff'+bgcolor,16), encoding)
+                    
+                    # since this is the result of an error, we're returning an image without intended label now but we want client to try again next time
+                    self.response.headers['Cache-Control'] = 'no-cache'
 
-        
+                except Exception, ex:
+                    logging.warning(ex)
+                    full_img = images.composite([empty_png_def], width, height, int('ff'+bgcolor,16), encoding)
+                    
+                    # since this is the result of an error, we're returning an image without intended label now but we want client to try again next time
+                    self.response.headers['Cache-Control'] = 'no-cache'
+                
+            self.response.headers['Content-Type'] = mimetype
+            self.response.out.write(full_img)
+
         
         ## image requested is too damn big
         else:

@@ -143,7 +143,7 @@
 
 <p><a href="http://code.google.com/appengine/">Google App Engine</a> seemed like a logical choice to host a simple application like this, but I was stunned to find that there's no way to render text into an image using it (at least not without jumping through a lot of hoops).  However, another Google service came to the rescue:  <a href="http://code.google.com/apis/chart/image_charts.html">Google Chart API</a>.  Luckily, it allows you to specify a chart that contains only the <a href="http://code.google.com/apis/chart/docs/chart_params.html#gcharts_chart_title">chart title</a>, and so Ipsum Image uses that to create the label text which it then composites onto the full placeholder image background using the <a href="http://code.google.com/appengine/docs/python/images/">GAE Images service</a>.  Full images are cached via <a href="http://code.google.com/appengine/docs/python/memcache/">GAE's memcached support</a>.</p>
 
-<p>NOTE:  The first version of Ipsum Image actually just redirected to the Google Chart API's rendered output directly.  It worked fairly well because you can specify a size for the chart (up to 300000 pixels) and a background color, but centering the text well was impossible to do.</p>
+<p>NOTE:  The first version of Ipsum Image actually just redirected to the Google Chart API's rendered output directly.  It worked fairly well because you can specify a size for the chart (up to 300000 pixels) and a background color, but centering the text well was impossible to do.  At some point I intend to <a href="https://github.com/mgrdcm/ipsumimage/issues/#issue/2">add this functionality back in by taking advantage of Chart's GraphViz support</a>.</p>
 
 
 
