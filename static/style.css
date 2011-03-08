@@ -5,10 +5,22 @@ html
 }
 body
 {
-    width: 60%;
+    width: 70%;
     margin: 0px auto;
     padding: 2em;
     background-color: white;
+}
+
+a
+{
+    color: #001e2d;
+}
+
+var
+{
+    color: #001e2d;
+    font-weight: bold;
+    font-style: italic;
 }
 
 h2
@@ -35,4 +47,37 @@ h2:target
     border-top: 1px solid #d3d3d3;
     display: block;
     text-align: right;
+}
+
+#bottom-about
+{
+    display: block;
+    text-align: center;
+    margin: 2em;
+}
+
+.examples
+{
+    clear: both;
+    overflow: hidden; /* float contain */
+    padding: 0px 10px;
+}
+
+.examples a
+{
+    float: left;
+    text-decoration: none;
+    text-align: center;
+    
+    margin: 10px;
+}
+
+.examples a span
+{
+    display: block;
+}
+
+.examples a:hover span
+{
+    text-decoration: underline;
 }

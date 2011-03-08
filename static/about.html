@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>About Ipsum Image</title>
+	
+	<link rel="icon" type="image/png" href="/16?s=8&amp;l=16%C2%B2" />
+	<link rel="apple-touch-icon" href="/57.png" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-12878728-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</head>
+<body>
+
+
+<h1>About Ipsum Image</h1>
+
+
+<p>Ipsum Image was created by <a href="http://moore.cx/dan">Dan Moore</a>.  It is hosted entirely by <a href="http://google.com/">Google</a> using <a href="http://code.google.com/appengine/">Google App Engine</a> and the <a href="http://code.google.com/apis/chart/image_charts.html">Google Chart API</a>.</p>
+    
+<p>Just like most of the <a href="http://dummyimage.com/#other-downloads">copycats</a>, I got the idea for this from <a href="http://www.russellheimlich.com/">Russell Heimlich</a>'s <a href="http://dummyimage.com/">DummyImage.com</a>.  It is his idea, I just thought I could do it in a way to make Google pay for the hosting.</p>
+
+<p>Ipsum Image is open source and licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>.  You'll find the <a href="http://github.com/mgrdcm/ipsumimage">source code for Ipsum Image</a> at <a href="http://github.com/mgrdcm">my GitHub account</a>.  Contributions are encouraged and welcome!</p>
+
+<p>Find a bug or have a feature request?  Submit it over on <a href="http://github.com/mgrdcm/ipsumimage/issues">Ipsum Image's GitHub Issue Tracker</a>.</p>
+
+
+<h2 id="vs-dummyimage">Ipsum Image vs. DummyImage</h2>
+
+<p>Ipsum Image has all the features of DummyImage.com, including <a href="http://dummyimage.com/#standards">standard image sizes</a>, with these exceptions/differences:</p>
+
+<ol>
+    <li>Doesn't support GIF, because Google App Engine doesn't support GIF.  Also, GIF is dumb - there, I said it.</li>
+    <li>Uses a different <a href="#url-parameters">URL scheme</a>.</li>
+    <li>I haven't done anything to <a href="http://dummyimage.com/#flash">support Flash as DummyImage does</a>, because I have no way to test.  Also, Flash is dumb - there, I said that too.</li>
+</ol>
+
+
+<h2 id="technical-details">Technical Details</h2>
+
+<p><a href="http://code.google.com/appengine/">Google App Engine</a> seemed like a logical choice to host a simple application like this, but I was stunned to find that there's no easy way to render text into an image with it.  However, another Google service came to the rescue:  <a href="http://code.google.com/apis/chart/image_charts.html">Google Chart API</a>.  Luckily, it allows you to specify a chart that contains only the <a href="http://code.google.com/apis/chart/docs/chart_params.html#gcharts_chart_title">chart title</a>, and so Ipsum Image uses that to create the label text which it then <a href="http://code.google.com/appengine/docs/python/images/functions.html#Image_composite">composites</a> onto the full placeholder image background using the <a href="http://code.google.com/appengine/docs/python/images/">GAE Images service</a>.  Full images are cached via <a href="http://code.google.com/appengine/docs/python/memcache/">GAE's memcached support</a>.</p>
+
+<p>NOTE:  The first version of Ipsum Image actually just redirected to the Google Chart API's rendered output directly.  It worked fairly well because you can specify a size for the chart (up to 300000 pixels) and a background color, but centering the text well was impossible to do.  At some point I intend to <a href="https://github.com/mgrdcm/ipsumimage/issues/#issue/2">add this functionality back in by taking advantage of Chart's GraphViz support</a>.</p>
+
+
+</body>
+</html>

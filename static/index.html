@@ -28,57 +28,62 @@
 
 <h1>Ipsum Image</h1>
 
-<p>Placeholder image generator running <a href="#how">completely on Google services</a>, intended for assisting with initial layouts of web designs before actual images are available.  Created by <a href="http://moore.cx/dan">Dan Moore</a>, inspired by <a href="http://dummyimage.com/">DummyImage</a>.</p>
-
-<hr />
-
-<p><a href="#what">What</a> | <a href="#why">Why</a> | <a href="#who">Who</a> | <a href="#where">Where</a> | <a href="#how">How</a></p>
+<p>Placeholder image generator running <a href="/about#technical-details">completely on Google services</a>, intended for assisting with initial layouts of web designs before actual images are available.  <br />Created by <a href="http://moore.cx/dan">Dan Moore</a>, inspired by <a href="http://dummyimage.com/">DummyImage</a>.  If you're interested you can <a href="/about">read all about it</a>.</p>
 
 
-<h2 id="what">What</h2>
+<h2>Examples</h2>
 
-<p>Ipsum Image gives you an image corresponding to the size in the URL.  If only one dimension is specified, the image will be square.  You can specify the background color by placing the full hex value after a comma at the end, or set fg/bg colors and lots of other things via the <a href="#url-parameters">URL parameters</a>.  Examples:</p>
+<p>To use, simply tack on the dimension(s) of your desired image to the URL of this page to get a PNG, or you can add .jpg to get a JPEG:</p>
+
+<div class="examples">
+	<a href="/140x100"><img src="/140x100" alt="140x100" /><span>/140x100</span></a>
+	<a href="/100"><img src="/100" alt="100" /><span>/100</span></a>
+	<a href="/100.jpg"><img src="/100.jpg" alt="100" /><span>/100.jpg</span></a>	
+	<a href="/140x100.png"><img src="/140x100.png" alt="140x100" /><span>/140x100.png</span></a>
+</div>
+
+
+<p>You can also change the background color, override the text, choose the font size, and even change the foreground color:</p>
+
+<div class="examples">
+	<a href="/140x100,ff7700"><img src="/140x100,ff7700" alt="140x100" /><span>/140x100,ff7700</span></a>
+	<a href="/320x100?l=IpsumImage|Hosted+on+GAE"><img src="/320x100?l=IpsumImage|Hosted+on+GAE" alt="100" /><span>/320x100?l=IpsumImage|Hosted+on+GAE</span></a>	
+	<a href="/100?l=30px&amp;s=30"><img src="/100?l=30px&amp;s=30" alt="100" /><span>/100?s=30</span></a>
+	<a href="/100?l=10px&amp;s=10"><img src="/100?l=10px&amp;s=10" alt="100" /><span>/100?s=10</span></a>
+	<a href="/140x100?f=ff7700"><img src="/140x100?f=ff7700" alt="140x100" /><span>/140x100?f=ff7700</span></a>
+</div>
+
+
+<p>Ipsum Image also supports the <a href="http://dummyimage.com/#standards">DummyImage standard image sizes</a>:</p>
+
+<div class="examples">
+	<a href="/microbar"><img src="/microbar" alt="microbar (88x88)" /><span>/microbar</span></a>
+	<a href="/cga"><img src="/cga" alt="cga (320x200)" /><span>/cga</span></a>
+</div>
+
+
+<h2>Reference</h2>
+
+<h3 id="path">Path</h3>
+
+<p>/<var>dimension</var>[,<var>bgcolor</var>][.<var>format</var>]</p>
 
 <dl>
-    <dt>http://ipsumimage.appspot.com/120x100</dt>
-    <dd><img src="/120x100" alt="120x100 Placeholder" /></dd>
-
-    <dt>http://ipsumimage.appspot.com/80.jpeg</dt>
-    <dd><img src="/80.jpeg" alt="80x80 Placeholder" /></dd>
-        
-    <dt>http://ipsumimage.appspot.com/200.png,333333</dt>
-    <dd><img src="/200.png,333333" alt="200x200 Placeholder" /></dd>
-        
-    <dt>http://ipsumimage.appspot.com/80.jpg?b=001E2D&amp;f=f</dt>
-    <dd><img src="/80.jpg?b=001E2D&amp;f=f" alt="80x80 Placeholder" /></dd>
-        
-    <dt>http://ipsumimage.appspot.com/cga</dt>
-    <dd><img src="/cga" alt="CGA Placeholder" /></dd>
-        
-    <dt>http://ipsumimage.appspot.com/120x100?l=IpsumImage|Hosted on GAE&amp;s=15</dt>
-    <dd><img src="/120x100?l=IpsumImage|Hosted+on+GAE&amp;s=15" alt="Ipsum Image Hosted on GAE" /></dd>
-        
-    <dt>http://www.ipsumimage.com/600x80</dt>
-    <dd><img src="http://www.ipsumimage.com/600x80" alt="600x80 Placeholder" /></dd>
+	<dt><var>dimension</var></dt>
+	<dd><var>dimension</var> can be a single pixel count (square image), <var>W</var>x<var>H</var>, or a <a href="http://dummyimage.com/#standards">DummyImage standard image size</a>.  Maximum image size is 4000x4000.</dd>
+	
+	<dt><var>bgcolor</var> (optional, defaults to grey)</dt>
+	<dd>Hex color value.</dd>
+	
+	<dt><var>format</var> (optional, defaults to PNG)</dt>
+	<dd>Can be .png, .jpg, or .jpeg.</dd>
 </dl>
 
+<h3 id="url-parameters">URL Parameters</h3>
 
-<h4>vs. DummyImage</h4>
+<p>When specified, the URL parameters take precedence over the <a href="#path">path</a>.  In other words, the image returned for "100.png?t=jpg" will be a JPEG.</p>
 
-<p>Ipsum Image has all the features of DummyImage.com, including <a href="http://dummyimage.com/#standards">standard image sizes</a>, with these exceptions/differences:</p>
-
-<ol>
-    <li>Doesn't support GIF, because Google App Engine doesn't support GIF.  Also, GIF is dumb - there, I said it.</li>
-    <li>Uses a different <a href="#url-parameters">URL scheme</a>.</li>
-    <li>I haven't done anything to <a href="http://dummyimage.com/#flash">support Flash as DummyImage does</a>, because I have no way to test.</li>
-</ol>
-
-
-<h4 id="url-parameters">URL parameters</h4>
-
-<p>When specified, the URL parameters take precedence over the path.  In other words, the image returned for "100.png?t=jpg" will be a JPEG.</p>
-
-<dl>
+<dl id="url-parameter-description">
     <dt><var>l</var></dt>
     <dd>Label text.</dd>
     
@@ -90,7 +95,6 @@
     
     <dt><var>b</var></dt>
     <dd>Background color.</dd>
-    
     
     <dt><var>t</var></dt>
     <dd>Type of image. Can be one of {png,jpg,jpeg}.</dd>
@@ -121,41 +125,7 @@
 </form>
 -->
 
-<h2 id="why">Why</h2>
-
-<ul>
-    <li>Dynamically creating placeholder images for layouts.</li>
-    <li>Learning Python and playing with GAE.</li>
-    <li>Taking over the world.</li>
-</ul>
-
-
-<h2 id="who">Who</h2>
-
-<p>Ipsum Image was written and is maintained by <a href="http://moore.cx/dan">Dan Moore</a>.</p>
-    
-<p>Just like most of the <a href="http://dummyimage.com/#other-downloads">copycats</a>, I got the idea for this from <a href="http://www.russellheimlich.com/blog">Russell Heimlich</a>'s <a href="http://dummyimage.com/">DummyImage.com</a>.  It is his idea, I just thought I could do it in a way to make Google pay for the hosting.</p>
-
-<p>Find a bug or have a feature request?  Submit it over on <a href="http://github.com/mgrdcm/ipsumimage/issues">IpsumImage's GitHub Issue Tracker</a>.</p>
-
-
-<h2 id="where">Where</h2>
-
-<p>You probably don't care about this section.</p>
-
-<p>Ipsum Image is hosted entirely by Google using <a href="http://code.google.com/appengine/">Google App Engine</a> along with some functionality provided by the <a href="http://code.google.com/apis/chart/image_charts.html">Google Chart API</a>.</p>
-
-<p>The <a href="http://github.com/mgrdcm/ipsumimage">source code for Ipsum Image</a> is available on <a href="http://github.com/mgrdcm">my GitHub account</a> and is licensed under Apache 2.0.  Contributions are encouraged and welcome!</p>
-
-
-<h2 id="how">How</h2>
-
-<p>You almost certainly don't care about this section.</p>
-
-<p><a href="http://code.google.com/appengine/">Google App Engine</a> seemed like a logical choice to host a simple application like this, but I was stunned to find that there's no way to render text into an image using it (at least not without jumping through a lot of hoops).  However, another Google service came to the rescue:  <a href="http://code.google.com/apis/chart/image_charts.html">Google Chart API</a>.  Luckily, it allows you to specify a chart that contains only the <a href="http://code.google.com/apis/chart/docs/chart_params.html#gcharts_chart_title">chart title</a>, and so Ipsum Image uses that to create the label text which it then composites onto the full placeholder image background using the <a href="http://code.google.com/appengine/docs/python/images/">GAE Images service</a>.  Full images are cached via <a href="http://code.google.com/appengine/docs/python/memcache/">GAE's memcached support</a>.</p>
-
-<p>NOTE:  The first version of Ipsum Image actually just redirected to the Google Chart API's rendered output directly.  It worked fairly well because you can specify a size for the chart (up to 300000 pixels) and a background color, but centering the text well was impossible to do.  At some point I intend to <a href="https://github.com/mgrdcm/ipsumimage/issues/#issue/2">add this functionality back in by taking advantage of Chart's GraphViz support</a>.</p>
-
+<p><a href="/about" id="bottom-about">About Ipsum Image</a></p>
 
 </body>
 </html>

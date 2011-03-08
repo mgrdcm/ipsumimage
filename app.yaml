@@ -1,5 +1,5 @@
 application: ipsumimage
-version: 2-2-2
+version: 2-2-3
 runtime: python
 api_version: 1
 
@@ -13,6 +13,9 @@ handlers:
 - url: /test
   static_files: static/test.html
   upload: static/test.html
+- url: /about
+  static_files: static/about.html
+  upload: static/about.html
 - url: /robots.txt
   static_files: static/robots.txt
   upload: static/robots.txt
