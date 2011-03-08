@@ -4,18 +4,31 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Ipsum Image - Placeholder Image Generator Hosted on Google App Engine</title>
-	<meta name="description" content="Dynamically generates placeholder images of any size up to 4000x4000, useful for doing initial implementations of web designs before actual images are available. Inspired by DummyImage.com." />
+	<meta name="description" content="Placeholder image generator running completely on Google services." />
 	
 	<link rel="icon" type="image/png" href="/16?s=8&amp;l=16%C2%B2" />
 	<link rel="apple-touch-icon" href="/57.png" />
-    <link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-12878728-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 </head>
 <body>
 
 <h1>Ipsum Image</h1>
 
-<p>Kinda like Lorem Ipsum text, but for images.  Dynamically generates placeholder images of any size up to 4000x4000, useful for doing initial layouts of web designs before actual images are available.  Inspired by DummyImage.com.</p>
-
+<p>Placeholder image generator running <a href="#how">completely on Google services</a>, intended for assisting with initial layouts of web designs before actual images are available.  Created by <a href="http://moore.cx/dan">Dan Moore</a>, inspired by <a href="http://dummyimage.com/">DummyImage</a>.</p>
 
 <hr />
 
@@ -66,23 +79,23 @@
 <p>When specified, the URL parameters take precedence over the path.  In other words, the image returned for "100.png?t=jpg" will be a JPEG.</p>
 
 <dl>
-    <dt>l</dt>
+    <dt><var>l</var></dt>
     <dd>Label text.</dd>
     
-    <dt>s</dt>
+    <dt><var>s</var></dt>
     <dd>Size of font.</dd>
     
-    <dt>f</dt>
+    <dt><var>f</var></dt>
     <dd>Foreground/font color.</dd>
     
-    <dt>b</dt>
+    <dt><var>b</var></dt>
     <dd>Background color.</dd>
     
     
-    <dt>t</dt>
+    <dt><var>t</var></dt>
     <dd>Type of image. Can be one of {png,jpg,jpeg}.</dd>
     
-    <dt>d</dt>
+    <dt><var>d</var></dt>
     <dd>Dimension override.  Same format as the base filename (WxH or a standard size name).</dd>
 </dl>
 
@@ -143,17 +156,6 @@
 
 <p>NOTE:  The first version of Ipsum Image actually just redirected to the Google Chart API's rendered output directly.  It worked fairly well because you can specify a size for the chart (up to 300000 pixels) and a background color, but centering the text well was impossible to do.  At some point I intend to <a href="https://github.com/mgrdcm/ipsumimage/issues/#issue/2">add this functionality back in by taking advantage of Chart's GraphViz support</a>.</p>
 
-
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-12878728-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
 
 </body>
 </html>
