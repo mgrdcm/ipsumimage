@@ -81,3 +81,12 @@ h2:target
 {
     text-decoration: underline;
 }
+
+dl
+{
+    margin-left: 2em;
+}
+dt
+{
+    margin-top: 1em;
+}
