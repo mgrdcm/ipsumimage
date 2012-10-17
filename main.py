@@ -27,10 +27,6 @@ from google.appengine.api import images
 from google.appengine.api import memcache
 
 from google.appengine.ext.webapp import util
-
-
-from google.appengine.dist import use_library
-use_library('django', '1.2')
 from google.appengine.ext.webapp import template
 
 from google.appengine.api.urlfetch import fetch
