@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2010-2011 Dan Moore
+# Copyright 2010-2012 Dan Moore
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -229,11 +229,6 @@ def writeError(response):
     response.out.write(template.render(path, {}))
 
 
-def main():
-    application = webapp.WSGIApplication([('.*', MainHandler)],
-                                       debug=True)
-    util.run_wsgi_app(application)
-
-
-if __name__ == '__main__':
-    main()
+application = webapp.WSGIApplication([('.*', MainHandler)],
+                                   debug=True)
+util.run_wsgi_app(application)

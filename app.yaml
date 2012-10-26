@@ -1,7 +1,7 @@
 application: ipsumimage-hrd
-version: 2-2-5
+version: 2-2-6
 runtime: python27
-threadsafe: false
+threadsafe: true
 api_version: 1
 
 handlers:
@@ -27,7 +27,7 @@ handlers:
   static_files: static/google96f127342fdae2a8.html
   upload: static/google96f127342fdae2a8.html
 - url: .*
-  script: main.py
+  script: main.application
 
 libraries:
 - name: django
