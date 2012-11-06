@@ -1,5 +1,5 @@
 application: ipsumimage-hrd
-version: 2-2-6
+version: 2-2-7
 runtime: python27
 threadsafe: true
 api_version: 1

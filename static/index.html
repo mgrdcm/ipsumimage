@@ -8,7 +8,10 @@
 	<meta name="description" content="Placeholder image generator running completely on Google services." />
 	
 	<link rel="icon" type="image/png" href="/16?s=8&amp;l=16%C2%B2" />
-	<link rel="apple-touch-icon" href="/57.png" />
+	<link rel="apple-touch-icon" href="/57.png?l=Ipsum%7CImage&amp;s=15" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/72.png?l=Ipsum%7CImage&amp;s=18" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/144.png?l=Ipsum%7CImage&amp;s=32" />
+	
 	<link rel="stylesheet" href="style.css" type="text/css" />
 
 	<script type="text/javascript">
@@ -110,9 +113,9 @@
 <form action="/ipsumimage" target="_blank" method="get" id="test-form">
     <p><label for="test-d">Dimensions</label> <input type="text" id="test-d" name="d" /></p>
     <p><label for="test-l">Label Text</label> <input type="text" id="test-l" name="l" /></p>
-    <p><label for="test-s">Size of Font</label> <input type="text" id="test-s" name="s" size="4" maxlength="4" /></p>
-    <p><label for="test-f">Foreground/Font Color</label> <input type="text" id="test-f" name="f" size="6" maxlength="6" /></p>
-    <p><label for="test-b">Background Color</label> <input type="text" id="test-b" name="b" size="6" maxlength="6" /></p>
+    <p><label for="test-s">Size of Font</label> <input type="number" id="test-s" name="s" min="1" max="50" step="1" /></p>
+    <p><label for="test-f">Foreground/Font Color</label> <input type="color" id="test-f" name="f" size="6" maxlength="6" /></p>
+    <p><label for="test-b">Background Color</label> <input type="color" id="test-b" name="b" size="6" maxlength="6" /></p>
 
     <p>
         <label for="test-t">Type</label>
